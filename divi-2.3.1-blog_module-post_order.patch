@@ -1,11 +1,11 @@
+Binary files Divi/et-pagebuilder/.et-pagebuilder.php.swp and Divi-2.3.1-blog-module-post-order/et-pagebuilder/.et-pagebuilder.php.swp differ
 diff -rupN Divi/et-pagebuilder/et-pagebuilder.php Divi-2.3.1-blog-module-post-order/et-pagebuilder/et-pagebuilder.php
---- Divi/et-pagebuilder/et-pagebuilder.php	2015-02-28 03:01:45.000000000 -0500
-+++ Divi-2.3.1-blog-module-post-order/et-pagebuilder/et-pagebuilder.php	2015-02-28 03:44:29.000000000 -0500
-@@ -6106,7 +6106,14 @@ echo <<<END
+--- Divi/et-pagebuilder/et-pagebuilder.php	2015-02-19 23:56:52.000000000 -0500
++++ Divi-2.3.1-blog-module-post-order/et-pagebuilder/et-pagebuilder.php	2015-02-28 04:10:20.000000000 -0500
+@@ -6106,9 +6106,41 @@ echo <<<END
  				</div> <!-- .et-pb-option-container -->
  			</div> <!-- .et-pb-option -->
  
--			<!-- BEGIN CUSTOM MODIFICATION -->
 +			<!-- 
 +				BEGIN CUSTOM MODIFICATION
 +				Blog Module Post Order Addon
@@ -14,28 +14,40 @@ diff -rupN Divi/et-pagebuilder/et-pagebuilder.php Divi-2.3.1-blog-module-post-or
 +				Reference: https://www.elegantthemes.com/forum/viewtopic.php?f=25&t=377685
 +			-->
 +
- 			<div class="et-pb-option">
- 				<label for="et_pb_posts_order">
- END;
-@@ -6119,7 +6126,7 @@ echo <<< END
- 						<option value="ASC" <%= typeof( et_pb_posts_order ) !== 'undefined' && 'ASC' === et_pb_posts_order ? ' selected="selected"' : '' %>>Ascending</option>
- 						<option value="DSC" <%= typeof( et_pb_posts_order ) !== 'undefined' && 'DESC' === et_pb_posts_order ? ' selected="selected"' : '' %>>Descending</option>
- 					</select>
--				</div>
++			<div class="et-pb-option">
++				<label for="et_pb_posts_order">
++END;
 +
- 				<p class="description">
++esc_html_e( 'Posts Order', 'Divi' );
++echo <<< END
++:</label>
++				<div class="et-pb-option-container">
++					<select name="et_pb_posts_order" id="et_pb_posts_order">
++						<option value="ASC" <%= typeof( et_pb_posts_order ) !== 'undefined' && 'ASC' === et_pb_posts_order ? ' selected="selected"' : '' %>>Ascending</option>
++						<option value="DSC" <%= typeof( et_pb_posts_order ) !== 'undefined' && 'DESC' === et_pb_posts_order ? ' selected="selected"' : '' %>>Descending</option>
++					</select>
++
++				<p class="description">
++END;
++
++esc_html_e( 'Toggle between ascending and descending post order.');
++echo <<<END
++</p>
++				</div> <!-- .et-pb-option-container -->
++			</div> <!-- .et-pb-option -->
++			<!-- END OF CUSTOM MODIFICATION -->
++
+ 			<div class="et-pb-option">
+ 				<label for="et_pb_include_categories">
  END;
- 
++
+ esc_html_e( 'Include Categories', 'Divi' );
+ echo <<<END
+ : </label>
 diff -rupN Divi/functions.php Divi-2.3.1-blog-module-post-order/functions.php
---- Divi/functions.php	2015-02-28 03:08:16.000000000 -0500
+--- Divi/functions.php	2015-02-19 23:56:52.000000000 -0500
 +++ Divi-2.3.1-blog-module-post-order/functions.php	2015-02-28 03:44:30.000000000 -0500
-@@ -3764,12 +3764,19 @@ function et_pb_blog( $atts ) {
- 			'show_content' => 'off',
- 			'show_author' => 'on',
- 			'show_date' => 'on',
--			'posts_order' => 'ASC',
- 			'show_categories' => 'on',
- 			'show_pagination' => 'on',
+@@ -3769,6 +3769,14 @@ function et_pb_blog( $atts ) {
  			'offset_number' => 0,
  			'background_layout' => 'light',
  			'show_more' => 'off',
@@ -49,4 +61,13 @@ diff -rupN Divi/functions.php Divi-2.3.1-blog-module-post-order/functions.php
 +			'posts_order' => 'ASC',
  		), $atts
  	) );
+ 
+@@ -3782,7 +3790,7 @@ function et_pb_blog( $atts ) {
+ 		$background_layout = 'light';
+ 	}
+ 
+-	$args = array( 'posts_per_page' => (int) $posts_number );
++	$args = array( 'posts_per_page' => (int) $posts_number, 'order' => $posts_order );
+ 
+ 	$et_paged = is_front_page() ? get_query_var( 'page' ) : get_query_var( 'paged' );
  
