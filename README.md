@@ -1,10 +1,16 @@
 # Divi Blog Module Post Order Addon
 
-1. Clone the repository or fetch the patch.
-2. Fetch the Divi theme through your ElegantThemes account.  Current version is **2.3.1**.
-3. Unzip your Divi Theme locally.
-4. Place the patch in the same directory as the the newly unzipped Divi theme.
-5. Divi was developed on Windows all the files have DOS line feeds.  I use linux/mac, so this becomes an issue with patching.  If you are on linux or mac, you will need to do the following to patch.
+Clone the repository or fetch the patch.
+```
+git clone https://github.com/burlyroot/divi-blog-module-post-order.git
+```
+Download Divi Theme from Elegant Themes.  Current version is **2.3.1**.
+
+Unzip your Divi Theme locally.
+
+Place the patch in the same directory as the the newly unzipped Divi theme.
+
+Divi was developed on Windows all the files have DOS line feeds.  I use linux/mac, so this becomes an issue with patching.  If you are on linux or mac, you will need to do the following to patch.
 
 **Convert to-be-patched file to UNIX line endings**
 ```
@@ -39,4 +45,3 @@ Divi:> unix2dos et-pagebuilder/et-pagebuilder.php
 unix2dos: converting file et-pagebuilder/et-pagebuilder.php to DOS format...
 ```
 
-6. Repackage as zip and upload to install.
