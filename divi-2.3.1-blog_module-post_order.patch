@@ -23,7 +23,7 @@ diff -rupN Divi/et-pagebuilder/et-pagebuilder.php Divi-2.3.1-blog_module-post_or
 +				<div class="et-pb-option-container">
 +					<select name="et_pb_posts_order" id="et_pb_posts_order">
 +						<option value="ASC" <%= typeof( et_pb_posts_order ) !== 'undefined' && 'ASC' === et_pb_posts_order ? ' selected="selected"' : '' %>>Ascending</option>
-+						<option value="DSC" <%= typeof( et_pb_posts_order ) !== 'undefined' && 'DESC' === et_pb_posts_order ? ' selected="selected"' : '' %>>Descending</option>
++						<option value="DESC" <%= typeof( et_pb_posts_order ) !== 'undefined' && 'DESC' === et_pb_posts_order ? ' selected="selected"' : '' %>>Descending</option>
 +					</select>
 +
 +				<p class="description">
